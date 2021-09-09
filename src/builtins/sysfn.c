@@ -581,6 +581,10 @@ B getLine_c1(B t, B x) {
   free(ln);
   return r;
 }
+B flushStdout_c1(B t, B x) {
+  fflush(stdout);
+  return x;
+}
 
 B fromUtf8_c1(B t, B x) {
   if (!isArr(x)) thrM("•FromUTF8: Argument must be a character or number array");
@@ -678,6 +682,7 @@ B sys_c1(B t, B x) {
     else if (eqStr(c, U"show")) r.a[i] = inc(bi_show);
     else if (eqStr(c, U"exit")) r.a[i] = inc(bi_exit);
     else if (eqStr(c, U"getline")) r.a[i] = inc(bi_getLine);
+    else if (eqStr(c, U"flushstdout")) r.a[i] = inc(bi_flushStdout);
     else if (eqStr(c, U"file")) {
       if(!fileNS.u) {
         REQ_PATH;
